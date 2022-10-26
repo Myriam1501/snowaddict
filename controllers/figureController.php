@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 final class figureController
 {
     function creat()
@@ -25,3 +26,22 @@ final class figureController
 }
 
 ?>
+=======
+final class FigureController {
+    function create() {
+
+    }
+
+    function read() {
+        
+    }
+
+    function update() {
+
+    }
+
+    function delete() {
+
+    }
+}
+>>>>>>> e56e7c754b943eb778c3a58f759faac5dd96e626
