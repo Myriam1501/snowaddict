@@ -28,19 +28,28 @@ final class figureController
 ?>
 =======
 final class FigureController {
-    function create() {
-
-    }
-
-    function read() {
+    function create()
+    {
         
     }
 
-    function update() {
+    function read()
+    {
 
     }
 
-    function delete() {
+    function update()
+    {
+
+    }
+
+    function delete()
+    {
+
+    }
+
+    function list()
+    {
 
     }
 }
