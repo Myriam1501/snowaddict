@@ -1,36 +1,8 @@
 <?php
-
-<<<<<<< HEAD
-final class figureController
-{
-    function creat()
-    {
-
-    }
-    function read()
-    {
-
-    }
-    function delete()
-    {
-
-    }
-    function update()
-    {
-
-    }
-    function list()
-    {
-
-    }
-}
-
-?>
-=======
 final class FigureController {
     function create()
     {
-        
+        require_once('views/pages/figure.php');
     }
 
     function read()
@@ -53,4 +25,4 @@ final class FigureController {
 
     }
 }
->>>>>>> e56e7c754b943eb778c3a58f759faac5dd96e626
+

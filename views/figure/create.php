@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -14,3 +15,6 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<?php $content = ob_get_clean(); ?>
+
+<?php require_once('views/layout.php'); ?>
