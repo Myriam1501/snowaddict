@@ -1,12 +1,21 @@
 <?php
-final class FigureController {
-    function create()
+
+final class FigureController
+{
+    function create(): void
     {
-        require_once('views/pages/figure.php');
+        $isSent = false;
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $isSent = true;
+        }
+
+        require_once('views/pages/figure/create.php');
     }
 
     function read()
     {
+
 
     }
 

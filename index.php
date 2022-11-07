@@ -4,8 +4,6 @@
     require_once('controllers/homepageController.php');
     require_once('controllers/figureController.php');
 
-
-
     try {
         if(isset($_GET['action']) && '' !== $_GET['action']) {
             $action = $_GET['action'];
