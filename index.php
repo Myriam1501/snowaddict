@@ -14,6 +14,9 @@
                 if ('create' === $action) {
                     $figureController->create();
                 }
+                if ('list' === $action) {
+                    $figureController->list();
+                }
             }
         } else {
             (new HomepageController())->home();

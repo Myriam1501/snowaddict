@@ -46,7 +46,17 @@ final class FigureController
 
     function list()
     {
+    
+        
+        $figure = new Figure();
 
+        $figureRepository = new FigureRepository();
+        $figureRepository->setConnection((new DatabaseConnection())->getConnection());
+
+        $figures=$figureRepository->list($figure);
+        require_once('views/pages/figure/list.php');
+
+       
     }
 }
 

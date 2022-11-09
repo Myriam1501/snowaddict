@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/index.php?action=create&controller=figure">Figures</a>
+          <a class="nav-link" href="/snowaddict/index.php?action=create&controller=figure">Figures</a>
         </li>
       </ul>
     </div>

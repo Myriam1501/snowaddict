@@ -7,23 +7,6 @@ final class FigureRepository
 
     public function create(Figure $figure): void
     {
-<<<<<<< HEAD
-        $stmt = $dbh->prepare("INSERT INTO REGISTRY (id, name, description, picturePath, videoPath, createdAt, deletedAt, updatedAt) VALUES (:id, :name,:description, :picturePath, :videoPath, :createdAt, :deletedAt, :updatedAt)");
-        $stmt->bindParam(':id', $figure.getId());
-        $stmt->bindParam(':name', $figure.getId());
-        $stmt->bindParam(':description', $figure.getDescription());
-        $stmt->bindParam(':picturePath', $figure.getPicturePath());
-        $stmt->bindParam(':videoPath', $figure.getVideoPath());
-        $stmt->bindParam(':createdAt', $figure.getCreatedAt());
-        $stmt->bindParam(':deletedAt', $figure.getDeletedAt());
-        $stmt->bindParam(':valupdatedAtue', $figure.getUpdatedAt());
-
-        $stmt->execute();
-        echo 'Hello';die;
-    }
-
-    public function setConnection(\PDO DatabaseConnection $databaseConnection): self
-=======
         $stmt = $this->databaseConnection->prepare('INSERT INTO figure (name, description, picturePath, videoPath, createdAt) VALUES (:name, :description, :picturePath, :videoPath, :createdAt)');
 
         $name = $figure->getName();
@@ -40,9 +23,26 @@ final class FigureRepository
 
         $stmt->execute();
     }
+    public function list(Figure $figure): array
+    {
+        $stmt = $this->databaseConnection->query('SELECT * FROM `figure`');
+        $stmt->execute();
+        $figure=[];
+        foreach($stmt->fetchAll() as $result) {
+            $object=new Figure();
+            //var_dump($result);
+            $object->setName($result['name']);
+            $object->setDescription($result['description']);
+            $object->setPicturePath($result['picturePath']);
+            $object->setVideoPath($result['videoPath']);
+            $figure[]=$object;
+        }
+    
+        return $figure;
+        
+    }
 
     public function setConnection(\PDO $databaseConnection): self
->>>>>>> 697fd5fae0b7cae19da4d579a7b342167eaf4aa2
     {
         $this->databaseConnection = $databaseConnection;
 
