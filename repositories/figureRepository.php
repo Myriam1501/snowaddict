@@ -23,24 +23,6 @@ final class FigureRepository
 
         $stmt->execute();
     }
-    public function list(Figure $figure): array
-    {
-        $stmt = $this->databaseConnection->query('SELECT * FROM `figure`');
-        $stmt->execute();
-        $figure=[];
-        foreach($stmt->fetchAll() as $result) {
-            $object=new Figure();
-            //var_dump($result);
-            $object->setName($result['name']);
-            $object->setDescription($result['description']);
-            $object->setPicturePath($result['picturePath']);
-            $object->setVideoPath($result['videoPath']);
-            $figure[]=$object;
-        }
-    
-        return $figure;
-        
-    }
 
     public function list(): array
     {
@@ -63,10 +45,45 @@ final class FigureRepository
 
             $figures[] = $figure; 
         }
-
         return $figures;
+        
     }
 
+    public function update(): array{
+        $stmt = $this->databaseConnection->prepare('UPDATE `figure` SET `id`=:id,`name`=:name,`description`=:description,`picturePath`=:picturePath,`videoPath`=:videoPath,`updatedAt`=:update');
+        $id = $_GET['id'];
+        $results = $this->afficheColonne($id);
+        var_dump($result);
+
+        $name = $results['name'];
+        $description = $results['description'];
+        $picturePath = $results['picturePath'];
+        $videoPath = $results['videoPath'];
+
+        $updatedAt = (new \DateTime())->format('Y-m-d H:i:s');
+        
+
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':picturePath', $picturePath);
+        $stmt->bindParam(':videoPath', $videoPath);
+
+        $stmt->bindParam(':updatedAt', $updatedAt);
+
+        $stmt->execute();
+        return afficheColonne($id);
+
+    }
+    public function afficheColonne(string $id): array
+    {
+        $valAll = $this->databaseConnection->prepare('SELECT `id`, `name`, `description`, `picturePath`, `videoPath`, `createdAt`, `updatedAt` FROM `figure` WHERE `id`=:id');
+        
+        $valAll->bindParam(':id',$id);
+        $valAll->execute();
+        $results = $valAll->fetch();
+        return $results;
+    }
     public function setConnection(\PDO $databaseConnection): self
     {
         $this->databaseConnection = $databaseConnection;

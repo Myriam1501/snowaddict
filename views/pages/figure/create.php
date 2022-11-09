@@ -6,7 +6,7 @@
       Votre figure a bien été créée.
     </div>
   <?php } ?>
-
+  <?php var_dump($_SERVER['REQUEST_METHOD']);?>
   <form action="/snowaddict/index.php?action=create&controller=figure" method="post">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>

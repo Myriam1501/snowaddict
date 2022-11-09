@@ -36,6 +36,24 @@ final class FigureController
 
     function update()
     {
+        $isSSent = false;
+        $figureRepository = new FigureRepository();
+        $figureRepository->setConnection((new DatabaseConnection())->getConnection());
+        $figure = $figureRepository->afficheColonne($_GET['id']);
+
+         if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $isSSent = true;
+            $figure = new Figure();
+            $figure->setName($_POST['name']);
+            $figure->setDescription($_POST['description']);
+            $figure->setPicturePath($_POST['picture']);
+             $figure->setVideoPath($_POST['video']);
+             $figureRepository = new FigureRepository();
+            $figureRepository->setConnection((new DatabaseConnection())->getConnection());
+            $figures = $figureRepository->update($figure);
+           
+        } 
+        require_once('views/pages/figure/update.php');
 
     }
 
@@ -46,26 +64,15 @@ final class FigureController
 
     function list()
     {
-<<<<<<< HEAD
-    
-        
-        $figure = new Figure();
-
-        $figureRepository = new FigureRepository();
-        $figureRepository->setConnection((new DatabaseConnection())->getConnection());
-
-        $figures=$figureRepository->list($figure);
-        require_once('views/pages/figure/list.php');
-
-       
-=======
+        $isClick = false;
         $figureRepository = new FigureRepository();
         $figureRepository->setConnection((new DatabaseConnection())->getConnection());
 
         $figures = $figureRepository->list();
 
+    
         require_once('views/pages/figure/list.php');
->>>>>>> 959df8667db97efef9f899e90d32bc00043cc173
     }
+
 }
 
