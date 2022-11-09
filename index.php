@@ -14,6 +14,10 @@
                 if ('create' === $action) {
                     $figureController->create();
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 959df8667db97efef9f899e90d32bc00043cc173
                 if ('list' === $action) {
                     $figureController->list();
                 }
