@@ -13,7 +13,7 @@ final class FigureRepository
         $description = $figure->getDescription();
         $picturePath = $figure->getPicturePath();
         $videoPath = $figure->getVideoPath();
-        $createdAt = $figure->getCreatedAt()->format('Y-m-d H:i:s');
+        $createdAt = $figure->getCreatedAt();
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
@@ -49,6 +49,7 @@ final class FigureRepository
         
     }
 
+<<<<<<< HEAD
     public function update(): array{
         $stmt = $this->databaseConnection->prepare('UPDATE `figure` SET `id`=:id,`name`=:name,`description`=:description,`picturePath`=:picturePath,`videoPath`=:videoPath,`updatedAt`=:update');
         $id = $_GET['id'];
@@ -62,10 +63,42 @@ final class FigureRepository
 
         $updatedAt = (new \DateTime())->format('Y-m-d H:i:s');
         
+=======
+    public function findById(int $figureId): Figure
+    {
+        $stmt = $this->databaseConnection->prepare('SELECT * FROM figure WHERE id = :id');
+
+        $stmt->bindParam(':id', $figureId);
+        $stmt->execute();
+
+        $result = $stmt->fetch();
+
+        $figure = new Figure();
+        $figure->setId($result['id']);
+        $figure->setName($result['name']);
+        $figure->setDescription($result['description']);
+        $figure->setPicturePath($result['picturePath']);
+        $figure->setVideoPath($result['videoPath']);
+
+        return $figure;
+    }
+
+    function update(Figure $figure): void
+    {
+        $stmt = $this->databaseConnection->prepare('UPDATE figure SET name = :name, description = :description, videoPath = :video, picturePath = :picture, updatedAt = :updatedAt where id = :id');
+
+        $id = $figure->getId();
+        $name = $figure->getName();
+        $description = $figure->getDescription();
+        $picturePath = $figure->getPicturePath();
+        $videoPath = $figure->getVideoPath();
+        $updatedAt = $figure->getUpdatedAt();
+>>>>>>> 8985026f68755f2a4dca0d67e7615d826fac5d9e
 
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
+<<<<<<< HEAD
         $stmt->bindParam(':picturePath', $picturePath);
         $stmt->bindParam(':videoPath', $videoPath);
 
@@ -84,6 +117,15 @@ final class FigureRepository
         $results = $valAll->fetch();
         return $results;
     }
+=======
+        $stmt->bindParam(':picture', $picturePath);
+        $stmt->bindParam(':video', $videoPath);
+        $stmt->bindParam(':updatedAt', $updatedAt);
+
+        $stmt->execute();
+    }
+
+>>>>>>> 8985026f68755f2a4dca0d67e7615d826fac5d9e
     public function setConnection(\PDO $databaseConnection): self
     {
         $this->databaseConnection = $databaseConnection;

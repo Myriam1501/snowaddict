@@ -10,7 +10,11 @@
       <th scope="col">Video path</th>
       <th scope="col">Created date</th>
       <th scope="col">Updated date</th>
+<<<<<<< HEAD
       <th scope="col">Modification</th>
+=======
+      <th scope="col">Actions</th>
+>>>>>>> 8985026f68755f2a4dca0d67e7615d826fac5d9e
     </tr>
   </thead>
   <tbody>
@@ -38,7 +42,13 @@
         <?= $figure->getUpdatedAt(); ?>
       </td>
       <td>
+<<<<<<< HEAD
       <button type="submit" class="mb-3 btn btn-primary" ><a href ="/snowaddict/index.php?action=update&controller=figure&id=<?php echo $figure->getId();?>">Modifier</a></button>
+=======
+        <a href="/index.php?action=update&controller=figure&id=<?= $figure->getId(); ?>">
+          <button class="btn btn-primary btn-sm">Modifier</button>
+        </a>
+>>>>>>> 8985026f68755f2a4dca0d67e7615d826fac5d9e
       </td>
     </tr>
     <?php } ?>
